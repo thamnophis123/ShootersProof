@@ -11,7 +11,7 @@
 
 <!-- BETA BANNER -->
 <div class="beta-banner">
-  ⊙ ShootersProof is in public beta — your feedback shapes what it becomes.
+  ShootersProof is in public beta &mdash; your feedback shapes what it becomes.
   <a href="mailto:feedback@shootersproof.com">Send a suggestion</a>
 </div>
 
@@ -29,43 +29,42 @@
   </nav>
 </header>
 
-<!-- APP -->
 <main class="app-container">
 
-  <!-- ── SCREEN 1: ONBOARDING ── -->
+  <!-- SCREEN 1: ONBOARDING -->
   <div id="screen-onboard" class="screen active">
     <div class="hero">
       <div class="hero-eyebrow">No sponsors &middot; No agendas &middot; Just data</div>
       <h2>Shoot better.<br><em>Know why.</em></h2>
-      <p>Upload a target, mark your shots, and get the statistical analysis that actually tells you something — not just group size, but what it means and how confident you can be in it.</p>
+      <p>Free target analysis for rifle and rimfire shooters. Upload a photo of your target and get the real statistics that tell you what your groups actually mean.</p>
       <button class="btn-hero" onclick="goTo('screen-upload')">Analyze a target &rarr;</button>
-      <p style="font-size:12px; color: var(--sp-muted); margin-top: 12px;">No account required &middot; Free during beta</p>
+      <p style="font-size:13px; color:#8a7a5a; margin-top:12px; font-family:'Courier New',monospace;">Free to use &middot; No account required</p>
     </div>
 
     <div class="principles">
-      <div class="principle">
-        <div class="principle-glyph">⊙</div>
-        <h3>Built for shooters</h3>
-        <p>Every feature exists to help you improve. Not to promote brands or push products.</p>
+      <div class="principle amber-top">
+        <div class="principle-glyph">Step 1</div>
+        <h3>Upload your target</h3>
+        <p>Use any target with a known measurement &mdash; 1&quot; grid squares, a center circle, or a printed scale. A clear phone photo works fine.</p>
       </div>
-      <div class="principle">
-        <div class="principle-glyph">◎</div>
-        <h3>Honest statistics</h3>
-        <p>We show you when your sample size is too small to draw conclusions. Most tools won't.</p>
+      <div class="principle green-top">
+        <div class="principle-glyph">Step 2</div>
+        <h3>Analyze your shots</h3>
+        <p>Let the computer detect bullet holes automatically, or click each one yourself. Set the scale and get real statistics instantly.</p>
       </div>
-      <div class="principle">
-        <div class="principle-glyph">○</div>
-        <h3>Transparent data use</h3>
-        <p>Optional details you share may appear in anonymized aggregate research. Always clearly disclosed.</p>
+      <div class="principle blue-top">
+        <div class="principle-glyph">Step 3</div>
+        <h3>Track your progress</h3>
+        <p>Create a free account to save sessions, develop a load, and see how you compare to other shooters by caliber, distance, and rifle.</p>
       </div>
     </div>
 
     <div class="data-notice">
-      <strong>A note on data:</strong> Your target images and shot data are yours. If you choose to share equipment details, anonymized aggregate data may be used in published research comparing loads, rifles, and accessories. We never sell personal information or identify individual users without explicit consent. ShootersProof has no corporate sponsors and no industry affiliations — if that ever changes, we will say so clearly.
+      <strong>A note on data:</strong> Your target images and shot data are yours. Equipment details you choose to share may appear in anonymized aggregate research comparing loads, rifles, and accessories. We never sell personal information or identify individual users without explicit consent. ShootersProof has no corporate sponsors or industry affiliations &mdash; if that ever changes, we will say so clearly.
     </div>
   </div>
 
-  <!-- ── SCREEN 2: UPLOAD ── -->
+  <!-- SCREEN 2: UPLOAD -->
   <div id="screen-upload" class="screen">
     <div class="step-header">
       <div class="step-num">1</div>
@@ -76,7 +75,7 @@
     </div>
 
     <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
-      <div class="upload-glyph">⊕</div>
+      <div class="upload-glyph">+</div>
       <h3>Click to upload a target photo</h3>
       <p>Or drag and drop &mdash; JPG, PNG, HEIC accepted</p>
     </div>
@@ -84,7 +83,7 @@
 
     <div class="info-card">
       <h4>What targets work?</h4>
-      <p>Any target with at least one known measurement &mdash; a center circle of known diameter, 1&quot; grid squares, or a printed scale. You&rsquo;ll click two points in the next step to set the scale. No special target required. <a href="#" onclick="alert('Printable targets coming soon')">Printable targets coming soon.</a></p>
+      <p>Any target with at least one known measurement &mdash; a center circle of known diameter, 1&quot; grid squares, or a printed scale. You will click two points in the next step to set the scale. No special target required. <a href="#" onclick="alert('Printable targets coming soon')">Printable targets coming soon.</a></p>
     </div>
 
     <div class="distance-row">
@@ -102,7 +101,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 3: MARK SHOTS ── -->
+  <!-- SCREEN 3: MARK SHOTS -->
   <div id="screen-mark" class="screen">
     <div class="step-header">
       <div class="step-num">2</div>
@@ -148,15 +147,12 @@
     <div class="shot-list">
       <div class="shot-list-header">
         <h4>Marked shots</h4>
-        <span id="shotCount" style="font-size:12px; color: var(--sp-muted); font-family: var(--sp-mono);">0 shots</span>
+        <span id="shotCount" style="font-size:12px; color:#8a7a5a; font-family:'Courier New',monospace;">0 shots</span>
       </div>
       <table class="shots-table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>X from MPI</th>
-            <th>Y from MPI</th>
-            <th>Dist from MPI</th>
+            <th>#</th><th>X from MPI</th><th>Y from MPI</th><th>Dist from MPI</th>
           </tr>
         </thead>
         <tbody id="shotTableBody"></tbody>
@@ -169,7 +165,7 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 4: ANALYSIS ── -->
+  <!-- SCREEN 4: ANALYSIS -->
   <div id="screen-analysis" class="screen">
     <div class="step-header">
       <div class="step-num">3</div>
@@ -194,8 +190,8 @@
 
     <hr class="section-divider">
 
-    <div style="margin-bottom: 1.25rem;">
-      <p style="font-size:12px; font-family: var(--sp-mono); text-transform: uppercase; letter-spacing: 0.07em; color: var(--sp-accent); margin-bottom: 10px;">Group visualization</p>
+    <div style="margin-bottom:1.25rem;">
+      <p style="font-size:12px; font-family:'Courier New',monospace; text-transform:uppercase; letter-spacing:0.07em; color:#8a6a10; margin-bottom:10px;">Group visualization</p>
       <div class="canvas-container">
         <canvas id="analysisCanvas" width="500" height="500"></canvas>
       </div>
@@ -207,13 +203,13 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 5: EQUIPMENT ── -->
+  <!-- SCREEN 5: EQUIPMENT -->
   <div id="screen-equipment" class="screen">
     <div class="step-header">
       <div class="step-num">4</div>
       <div>
         <h2>Equipment details</h2>
-        <p>All fields are optional. Add what's useful — the more you share, the more the data can tell you over time.</p>
+        <p>All fields are optional. Add what is useful &mdash; the more you share, the more the data can tell you over time.</p>
       </div>
     </div>
 
@@ -245,7 +241,7 @@
         <div class="field-group">
           <label>Trigger</label>
           <input type="text" placeholder="e.g. stock, Timney 510, Jewell...">
-          <span class="field-why">Does trigger pull affect your groups? You'll find out.</span>
+          <span class="field-why">Does trigger affect group size? You will find out.</span>
         </div>
       </div>
     </div>
@@ -255,18 +251,18 @@
       <div class="field-grid">
         <div class="field-group">
           <label>Suppressor</label>
-          <select><option value="">None</option><option>Yes — see below</option></select>
+          <select><option value="">None</option><option>Yes &mdash; see below</option></select>
           <input type="text" placeholder="Brand / model" style="margin-top:5px">
-          <span class="field-why">Suppressor impact on group size is an active research question</span>
+          <span class="field-why">Suppressor impact on group size is actively studied</span>
         </div>
         <div class="field-group">
           <label>Muzzle brake</label>
-          <select><option value="">None</option><option>Yes — see below</option></select>
+          <select><option value="">None</option><option>Yes &mdash; see below</option></select>
           <input type="text" placeholder="Brand / model" style="margin-top:5px">
         </div>
         <div class="field-group">
           <label>Tuner</label>
-          <select><option value="">None</option><option>Yes — see below</option></select>
+          <select><option value="">None</option><option>Yes &mdash; see below</option></select>
           <input type="text" placeholder="Brand / model" style="margin-top:5px">
           <span class="field-why">Tuner effect on rimfire consistency is actively studied</span>
         </div>
@@ -310,12 +306,11 @@
           <span class="field-why">Bullet weight vs twist rate is a key variable</span>
         </div>
         <div class="field-group">
-          <label>Lot number <span style="font-size:11px; opacity:0.6;">(rimfire especially)</span></label>
+          <label>Lot number <span style="font-size:11px;opacity:0.7;">(rimfire especially)</span></label>
           <input type="text" placeholder="e.g. LT24A0012">
           <span class="field-why">Lot consistency is critical for rimfire precision</span>
         </div>
       </div>
-
       <div id="reloadFields" style="display:none; margin-top:12px;">
         <div class="field-grid">
           <div class="field-group">
@@ -349,9 +344,9 @@
           <label>Wind</label>
           <select>
             <option value="">Unknown / not recorded</option>
-            <option>Calm (0–3 mph)</option>
-            <option>Light (4–7 mph)</option>
-            <option>Moderate (8–12 mph)</option>
+            <option>Calm (0&ndash;3 mph)</option>
+            <option>Light (4&ndash;7 mph)</option>
+            <option>Moderate (8&ndash;12 mph)</option>
             <option>Strong (13+ mph)</option>
           </select>
         </div>
@@ -368,10 +363,10 @@
     </div>
   </div>
 
-  <!-- ── SCREEN 6: SUMMARY ── -->
+  <!-- SCREEN 6: SUMMARY -->
   <div id="screen-summary" class="screen">
     <div class="step-header">
-      <div class="step-num" style="background: var(--sp-green);">&#10003;</div>
+      <div class="step-num" style="background:#3b6d11;">&#10003;</div>
       <div>
         <h2>Session complete</h2>
         <p>Your results are ready. Export, share, or start a new session.</p>
@@ -384,25 +379,24 @@
     </div>
 
     <div class="action-row">
-      <button class="btn" onclick="alert('PDF export — coming in next update')">Export PDF report</button>
-      <button class="btn" onclick="alert('Share links — coming soon')">Copy share link</button>
-      <button class="btn" onclick="alert('Group layering — coming soon')">Layer another group</button>
+      <button class="btn" onclick="alert('PDF export coming in next update')">Export PDF report</button>
+      <button class="btn" onclick="alert('Share links coming soon')">Copy share link</button>
+      <button class="btn" onclick="alert('Group layering coming soon')">Layer another group</button>
     </div>
 
     <div class="data-notice">
-      <strong>Your data:</strong> The equipment details you entered (if any) may contribute to anonymized aggregate research. Your personal information is never shared or sold. You can request deletion at any time by contacting us.
+      <strong>Your data:</strong> Equipment details you entered (if any) may contribute to anonymized aggregate research. Your personal information is never shared or sold. You can request deletion at any time by contacting us.
     </div>
 
-    <div style="text-align:center; margin-top: 2rem;">
+    <div style="text-align:center; margin-top:2rem;">
       <button class="btn-hero" onclick="startOver()">Analyze another target &rarr;</button>
     </div>
   </div>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
-  <p>ShootersProof &mdash; built for shooters, by shooters &mdash; Beta v0.1</p>
+  <p>ShootersProof &mdash; built for shooters &middot; Beta v0.1</p>
   <p style="margin-top:6px;">
     No corporate sponsors &middot; No industry affiliations &middot;
     <a href="mailto:feedback@shootersproof.com">Send feedback</a> &middot;
