@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account — ShootersProof</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .auth-page { max-width: 480px; margin: 3rem auto; padding: 0 1.5rem; }
+    .auth-card { background: #fff; border: 0.5px solid #d8c898; border-top: 3px solid #c8a94a; border-radius: 12px; padding: 2rem; }
+    .auth-card h2 { font-size: 24px; font-weight: normal; margin-bottom: 6px; }
+    .auth-card .sub { font-size: 14px; color: #8a7a5a; margin-bottom: 1.5rem; line-height: 1.6; }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1rem; }
+    .field label { font-size: 12px; color: #8a7a5a; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.06em; }
+    .field input { padding: 10px 12px; border: 0.5px solid #d8c898; border-radius: 8px; font-size: 14px; background: #f5f0e8; color: #2c2416; font-family: Georgia, serif; }
+    .field input:focus { outline: none; border-color: #8a6a10; }
+    .btn-submit { width: 100%; background: #8a6a10; color: #fff; border: none; padding: 13px; border-radius: 8px; font-size: 16px; cursor: pointer; font-family: Georgia, serif; margin-top: 0.5rem; box-shadow: 0 4px 0 #5a3a00; position: relative; top: 0; transition: top 0.1s, box-shadow 0.1s; }
+    .btn-submit:hover { background: #7a5a08; }
+    .btn-submit:active { top: 3px; box-shadow: 0 1px 0 #5a3a00; }
+    .error { background: #fcebeb; border: 0.5px solid #f09595; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #a32d2d; margin-bottom: 1rem; font-family: 'Courier New', monospace; }
+    .benefits { background: #eaf3de; border-radius: 8px; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+    .benefits h4 { font-size: 12px; font-weight: normal; color: #3b6d11; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+    .benefits ul { list-style: none; padding: 0; }
+    .benefits ul li { font-size: 13px; color: #27500a; padding: 3px 0; padding-left: 16px; position: relative; line-height: 1.5; }
+    .benefits ul li::before { content: '✓'; position: absolute; left: 0; color: #3b6d11; }
+    .auth-footer { text-align: center; margin-top: 1.25rem; font-size: 13px; color: #8a7a5a; }
+    .auth-footer a { color: #8a6a10; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<div class="beta-banner">
+  ShootersProof is in public beta &mdash; <a href="mailto:feedback@shootersproof.com">Send feedback</a>
+</div>
+
+<header class="site-header">
+  <div class="site-logo">
+    <a href="/" style="text-decoration:none;"><h1>Shooters<span>Proof</span></h1></a>
+    <span class="logo-tag">Beta v0.1</span>
+  </div>
+</header>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>Create a free account</h2>
+    <p class="sub">Join ShootersProof and put your data to work.</p>
+
+    <div class="benefits">
+      <h4>Your account unlocks</h4>
+      <ul>
+        <li>Save and revisit every session you've analyzed</li>
+        <li>Track your improvement over time as a shooter</li>
+        <li>Develop and compare loads &mdash; see what performs best</li>
+        <li>Compare rifles, triggers, suppressors, and accessories</li>
+        <li>Enter online competitions and see how you rank</li>
+        <li>Contribute to real ballistics research, anonymously</li>
+      </ul>
+    </div>
+
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/signup">
+      <div class="field">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="e.g. sharpshooter_joe" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Password (8+ characters)</label>
+        <input type="password" name="password" placeholder="Choose a strong password" required autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn-submit">Create free account &rarr;</button>
+    </form>
+
+    <div class="auth-footer">
+      <p style="font-size:11px; color:#8a7a5a; margin-top:1rem; line-height:1.6;">No spam. No cost. No corporate agenda.<br>Your data works for you.</p>
+    </div>
+  </div>
+
+  <div class="auth-footer">
+    Already have an account? <a href="/login">Log in</a>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>ShootersProof &mdash; built for shooters &middot; Beta v0.1 &middot; <a href="mailto:feedback@shootersproof.com">Feedback</a></p>
+</footer>
+
+</body>
+</html>
