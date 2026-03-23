@@ -5,8 +5,14 @@ import os
 
 app = Flask(__name__)
 
-# Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///shootersproof.db')
+# Database configuration - convert postgres:// to postgresql+pg8000://
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///shootersproof.db')
+if database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql+pg8000://', 1)
+elif database_url.startswith('postgresql://'):
+    database_url = database_url.replace('postgresql://', 'postgresql+pg8000://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-change-in-production')
 
@@ -47,50 +53,50 @@ class Shot(db.Model):
 
 class Equipment(db.Model):
     __tablename__ = 'equipment'
-    id                = db.Column(db.Integer, primary_key=True)
-    session_id        = db.Column(db.Integer, db.ForeignKey('sessions.id'), nullable=False)
-    rifle_make        = db.Column(db.String(100), nullable=True)
-    rifle_model       = db.Column(db.String(100), nullable=True)
-    caliber           = db.Column(db.String(50), nullable=True)
-    barrel_length     = db.Column(db.Float, nullable=True)
-    twist_rate        = db.Column(db.String(20), nullable=True)
-    trigger           = db.Column(db.String(100), nullable=True)
-    suppressor        = db.Column(db.Boolean, default=False)
-    suppressor_model  = db.Column(db.String(100), nullable=True)
-    muzzle_brake      = db.Column(db.Boolean, default=False)
-    muzzle_brake_model= db.Column(db.String(100), nullable=True)
-    tuner             = db.Column(db.Boolean, default=False)
-    tuner_model       = db.Column(db.String(100), nullable=True)
-    rest_type         = db.Column(db.String(100), nullable=True)
-    ammo_type         = db.Column(db.String(20), nullable=True)
-    ammo_brand        = db.Column(db.String(100), nullable=True)
-    ammo_product      = db.Column(db.String(100), nullable=True)
-    bullet_weight     = db.Column(db.Float, nullable=True)
-    lot_number        = db.Column(db.String(50), nullable=True)
-    powder            = db.Column(db.String(100), nullable=True)
-    powder_charge     = db.Column(db.Float, nullable=True)
-    primer            = db.Column(db.String(100), nullable=True)
-    coal              = db.Column(db.Float, nullable=True)
-    temperature       = db.Column(db.Float, nullable=True)
-    wind              = db.Column(db.String(50), nullable=True)
-    notes             = db.Column(db.Text, nullable=True)
+    id                 = db.Column(db.Integer, primary_key=True)
+    session_id         = db.Column(db.Integer, db.ForeignKey('sessions.id'), nullable=False)
+    rifle_make         = db.Column(db.String(100), nullable=True)
+    rifle_model        = db.Column(db.String(100), nullable=True)
+    caliber            = db.Column(db.String(50), nullable=True)
+    barrel_length      = db.Column(db.Float, nullable=True)
+    twist_rate         = db.Column(db.String(20), nullable=True)
+    trigger            = db.Column(db.String(100), nullable=True)
+    suppressor         = db.Column(db.Boolean, default=False)
+    suppressor_model   = db.Column(db.String(100), nullable=True)
+    muzzle_brake       = db.Column(db.Boolean, default=False)
+    muzzle_brake_model = db.Column(db.String(100), nullable=True)
+    tuner              = db.Column(db.Boolean, default=False)
+    tuner_model        = db.Column(db.String(100), nullable=True)
+    rest_type          = db.Column(db.String(100), nullable=True)
+    ammo_type          = db.Column(db.String(20), nullable=True)
+    ammo_brand         = db.Column(db.String(100), nullable=True)
+    ammo_product       = db.Column(db.String(100), nullable=True)
+    bullet_weight      = db.Column(db.Float, nullable=True)
+    lot_number         = db.Column(db.String(50), nullable=True)
+    powder             = db.Column(db.String(100), nullable=True)
+    powder_charge      = db.Column(db.Float, nullable=True)
+    primer             = db.Column(db.String(100), nullable=True)
+    coal               = db.Column(db.Float, nullable=True)
+    temperature        = db.Column(db.Float, nullable=True)
+    wind               = db.Column(db.String(50), nullable=True)
+    notes              = db.Column(db.Text, nullable=True)
 
 class Result(db.Model):
     __tablename__ = 'results'
-    id                  = db.Column(db.Integer, primary_key=True)
-    session_id          = db.Column(db.Integer, db.ForeignKey('sessions.id'), nullable=False)
-    extreme_spread_in   = db.Column(db.Float, nullable=True)
-    mean_radius_in      = db.Column(db.Float, nullable=True)
-    cep_in              = db.Column(db.Float, nullable=True)
-    sd_x_in             = db.Column(db.Float, nullable=True)
-    sd_y_in             = db.Column(db.Float, nullable=True)
-    figure_of_merit_in  = db.Column(db.Float, nullable=True)
-    extreme_spread_moa  = db.Column(db.Float, nullable=True)
-    mean_radius_moa     = db.Column(db.Float, nullable=True)
-    confidence_score    = db.Column(db.Integer, nullable=True)
-    confidence_label    = db.Column(db.String(20), nullable=True)
-    mpi_x               = db.Column(db.Float, nullable=True)
-    mpi_y               = db.Column(db.Float, nullable=True)
+    id                 = db.Column(db.Integer, primary_key=True)
+    session_id         = db.Column(db.Integer, db.ForeignKey('sessions.id'), nullable=False)
+    extreme_spread_in  = db.Column(db.Float, nullable=True)
+    mean_radius_in     = db.Column(db.Float, nullable=True)
+    cep_in             = db.Column(db.Float, nullable=True)
+    sd_x_in            = db.Column(db.Float, nullable=True)
+    sd_y_in            = db.Column(db.Float, nullable=True)
+    figure_of_merit_in = db.Column(db.Float, nullable=True)
+    extreme_spread_moa = db.Column(db.Float, nullable=True)
+    mean_radius_moa    = db.Column(db.Float, nullable=True)
+    confidence_score   = db.Column(db.Integer, nullable=True)
+    confidence_label   = db.Column(db.String(20), nullable=True)
+    mpi_x              = db.Column(db.Float, nullable=True)
+    mpi_y              = db.Column(db.Float, nullable=True)
 
 # ─── ROUTES ───────────────────────────────────────────────────
 
