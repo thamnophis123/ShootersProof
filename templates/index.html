@@ -26,6 +26,13 @@
     <a href="#" onclick="alert('Leaderboards coming soon')">Leaderboards</a>
     <a href="#" onclick="alert('About page coming soon')">About</a>
     <a href="mailto:feedback@shootersproof.com">Feedback</a>
+    {% if user %}
+      <span style="color:#8a7a5a; font-size:13px; font-family:'Courier New',monospace;">{{ user.username }}</span>
+      <a href="/logout" style="color:#a32d2d;">Log out</a>
+    {% else %}
+      <a href="/login">Log in</a>
+      <a href="/signup" style="background:#8a6a10; color:#fff; padding:6px 16px; border-radius:6px; font-size:13px;">Sign up free</a>
+    {% endif %}
   </nav>
 </header>
 
@@ -359,7 +366,7 @@
 
     <div class="nav-row">
       <button class="btn" onclick="goTo('screen-analysis')">&larr; Back to results</button>
-      <button class="btn btn-primary" onclick="goTo('screen-summary')">Save session &rarr;</button>
+      <button class="btn btn-primary" onclick="handleSaveSession()">Save session &rarr;</button>
     </div>
   </div>
 
@@ -403,6 +410,68 @@
     <a href="#" onclick="alert('Privacy policy coming soon')">Privacy</a>
   </p>
 </footer>
+
+<!-- REGISTRATION POPUP -->
+<div id="regModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,22,0.6); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:#fff; border-radius:12px; border-top:3px solid #c8a94a; padding:2rem; max-width:480px; width:90%; margin:1rem;">
+    <h3 style="font-size:20px; font-weight:normal; margin-bottom:8px; color:#2c2416;">Save your results</h3>
+    <p style="font-size:14px; color:#8a7a5a; margin-bottom:1.25rem;">Create a free account to unlock everything ShootersProof has to offer.</p>
+
+    <div style="background:#eaf3de; border-radius:8px; padding:1rem 1.25rem; margin-bottom:1.25rem;">
+      <p style="font-size:12px; color:#3b6d11; font-family:'Courier New',monospace; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px;">Your account unlocks</p>
+      <ul style="list-style:none; padding:0;">
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Save and revisit every session you've analyzed
+        </li>
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Track your improvement over time as a shooter
+        </li>
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Develop and compare loads &mdash; see what performs best
+        </li>
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Compare rifles, triggers, suppressors, and accessories
+        </li>
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Enter online competitions and see how you rank
+        </li>
+        <li style="font-size:13px; color:#27500a; padding:3px 0 3px 18px; position:relative;">
+          <span style="position:absolute; left:0; color:#3b6d11;">&#10003;</span>Contribute to real ballistics research, anonymously
+        </li>
+      </ul>
+      <p style="font-size:11px; color:#3b6d11; margin-top:10px; font-style:italic;">No spam. No cost. No corporate agenda. Just your data, working for you.</p>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="/signup" style="flex:1; background:#8a6a10; color:#fff; border:none; padding:12px 20px; border-radius:8px; font-size:15px; text-align:center; text-decoration:none; font-family:Georgia,serif; box-shadow:0 3px 0 #5a3a00;">Create free account &rarr;</a>
+      <a href="/login" style="flex:1; background:transparent; color:#2c2416; border:0.5px solid #d8c898; padding:12px 20px; border-radius:8px; font-size:15px; text-align:center; text-decoration:none; font-family:Georgia,serif;">Already have one? Log in</a>
+    </div>
+
+    <p style="text-align:center; margin-top:1rem;">
+      <a href="#" onclick="closeRegModal(); goTo('screen-summary'); return false;" style="font-size:12px; color:#8a7a5a;">Continue without saving</a>
+    </p>
+  </div>
+</div>
+
+<script>
+const isLoggedIn = {{ 'true' if user else 'false' }};
+
+function handleSaveSession() {
+  if (isLoggedIn) {
+    goTo('screen-summary');
+  } else {
+    document.getElementById('regModal').style.display = 'flex';
+  }
+}
+
+function closeRegModal() {
+  document.getElementById('regModal').style.display = 'none';
+}
+
+document.getElementById('regModal').addEventListener('click', function(e) {
+  if (e.target === this) closeRegModal();
+});
+</script>
 
 <script src="/static/js/app.js"></script>
 </body>
